@@ -51,4 +51,11 @@ public class Main {
 
 	}
 
+	@Override
+	protected void finalize() throws Throwable {
+		gameSocket.interrupt();
+		serverSocket.interrupt();
+		super.finalize();
+	}
+
 }

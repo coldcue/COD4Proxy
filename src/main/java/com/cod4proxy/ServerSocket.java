@@ -46,6 +46,12 @@ public class ServerSocket extends Thread {
 		}
 	}
 
+	@Override
+	protected void finalize() throws Throwable {
+		socket.close();
+		super.finalize();
+	}
+
 	/**
 	 * Sends the specified data to the server
 	 * 
