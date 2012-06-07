@@ -6,10 +6,23 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.logging.Level;
 
+/**
+ * This socket thread handles the server's packets.
+ * 
+ * @author ColdCue
+ * 
+ */
 public class ServerSocket extends Thread {
 	private DatagramSocket socket;
 	private int bufSize;
 
+	/**
+	 * Creates a ServerSocket thread and starts at the given
+	 * port
+	 * @see ServerSocket
+	 * @throws SocketException
+	 * 
+	 */
 	public ServerSocket() throws SocketException {
 		socket = new DatagramSocket();
 		socket.setTrafficClass(0x10);
