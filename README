@@ -1,1 +1,3 @@
 This is a great tool to reduce the latency on any COD4 servers. Now it's in beta stage, bugs can occur!
+To start this, first you have to get the latest Java platform. After you did it, you just type in:
+java -jar COD4Proxy-0.0.1-SNAPSHOT.jar
