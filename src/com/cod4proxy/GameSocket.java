@@ -21,6 +21,7 @@ public class GameSocket extends Thread {
 	 * Creates a GameSocket thread and starts at the given port
 	 * 
 	 * @throws SocketException
+	 * @see com.cod4proxy.GameSocket
 	 * 
 	 */
 	public GameSocket() throws SocketException {
@@ -33,12 +34,12 @@ public class GameSocket extends Thread {
 		Main.logger.info("GameSocket started!");
 		byte[] buf = new byte[bufSize];
 		while (true) {
-			//Creates an empty packet
+			// Creates an empty packet
 			DatagramPacket packet = new DatagramPacket(buf, buf.length);
 			try {
-				//Writes the data in the previously created packet
+				// Writes the data in the previously created packet
 				socket.receive(packet);
-				//Sends toward the received packet
+				// Sends toward the received packet
 				remoteAddress = packet.getSocketAddress();
 				Main.serverSocket.send(packet.getData(), packet.getLength());
 				Main.logger.fine("GAME: " + new String(packet.getData(), 0, packet.getLength()));

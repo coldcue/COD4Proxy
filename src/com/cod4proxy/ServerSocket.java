@@ -17,8 +17,8 @@ public class ServerSocket extends Thread {
 	private int bufSize;
 
 	/**
-	 * Creates a ServerSocket thread and starts at the given
-	 * port
+	 * Creates a ServerSocket thread and starts at the given port
+	 * 
 	 * @see ServerSocket
 	 * @throws SocketException
 	 * 
@@ -31,12 +31,6 @@ public class ServerSocket extends Thread {
 	}
 
 	public void run() {
-		// PrintWriter file = null;
-		// try {
-		// file = new PrintWriter(new FileWriter("server.txt"), true);
-		// } catch (IOException e1) {
-		// e1.printStackTrace();
-		// }
 		Main.logger.info("ServerSocket started!");
 		byte[] buf = new byte[bufSize];
 		while (true) {
@@ -44,10 +38,7 @@ public class ServerSocket extends Thread {
 			try {
 				socket.receive(packet);
 				Main.gameSocket.send(packet.getData(), packet.getLength());
-				// System.out.println("SERVER: " + new String(packet.getData(),
-				// 0, packet.getLength()));
-				// file.println(new String(packet.getData(), 0,
-				// packet.getLength()));
+				Main.logger.fine("SERVER: " + new String(packet.getData(), 0, packet.getLength()));
 			} catch (IOException e) {
 				Main.logger.log(Level.WARNING, e.getMessage());
 				e.printStackTrace();
@@ -55,6 +46,14 @@ public class ServerSocket extends Thread {
 		}
 	}
 
+	/**
+	 * Sends the specified data to the server
+	 * 
+	 * @param data
+	 * @param length
+	 * @throws IOException
+	 * 
+	 */
 	public synchronized void send(byte[] data, int length) throws IOException {
 
 		socket.send(new DatagramPacket(data, length, Main.serverAddress));
